@@ -1,4 +1,4 @@
-import { Character, LocalizeCharProfile } from "@/app/lib/table";
+import { Character, LocalizeCharProfile, LocalizeCharProfileEn } from "@/app/lib/table";
 
 /**
  * Localize character name from DevName to EN (FamilyNameEn + PersonalNameEn) if available, otherwise FullNameJp.
@@ -10,9 +10,15 @@ import { Character, LocalizeCharProfile } from "@/app/lib/table";
 export function localizeCharFromDevName(s: string): string {
   const id = findCharIdFromDevName(s);
   if (id !== -1) {
+    // Workaround for missing character profile in EN
+    const profileEn = LocalizeCharProfileEn.data.find((v) => v.CharacterId === id);
     const profile = LocalizeCharProfile.data.find((v) => v.CharacterId === id);
+    // If profileEn is available, return FamilyNameEn + PersonalNameEn
+    if (profileEn) return `${[profileEn.PersonalNameEn, profileEn.FamilyNameEn].join(" ")}`;
+    // If profile is available, return FullNameJp
     if (!profile) return s;
     if (profile.FamilyNameEn === "" || profile.FamilyNameEn === undefined) return profile.FullNameJp;
+    // JP Table never has english names, so maybe I should change localize char profile to load differently and do a check there
     return `${[profile.FamilyNameEn, profile.PersonalNameEn].join(" ")}`;
   }
   return s;

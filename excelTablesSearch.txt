@@ -1,0 +1,1 @@
+AcademyFavorScheduleExcelTable.json | CharacterDialogExcelTable.json | CharacterExcelTable.json | LocalizeCharProfileExcelTable.json | MemoryLobbyExcelTable.json

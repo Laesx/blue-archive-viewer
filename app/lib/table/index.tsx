@@ -3,6 +3,7 @@ import * as AcademyFavorSchedule from "./academy_favor_schedule";
 import * as CharacterDialog from "./character_dialog";
 import * as Character from "./character";
 import * as LocalizeCharProfile from "./localize_char_profile";
+import * as LocalizeCharProfileEn from "./localize_char_profile_en";
 import * as MemoryLobby from "./memory_lobby";
 import { Region } from "./types";
 
@@ -11,6 +12,7 @@ const imports = [
   CharacterDialog,
   Character,
   LocalizeCharProfile,
+  LocalizeCharProfileEn,
   MemoryLobby,
 ];
 
@@ -36,4 +38,4 @@ export const initialize = async (region: Region) => {
   });
 };
 
-export { AcademyFavorSchedule, Character, CharacterDialog, LocalizeCharProfile, MemoryLobby };
+export { AcademyFavorSchedule, Character, CharacterDialog, LocalizeCharProfile, MemoryLobby, LocalizeCharProfileEn };
